@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import messages
+from .models import Profile,Project,Review
 
 
 # Create your views here.
@@ -43,4 +44,7 @@ def loginrequest(request):
 
 @login_required(login_url='/accounts/login')
 def index(request):
-    pass
+    title = "Awwards"
+    current_user = request.user
+    projects = Project.get_all_projects()
+    return render(request, 'index.html',{'title':title,'current_user':current_user,'projects':projects})
