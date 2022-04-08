@@ -5,6 +5,7 @@ from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, 
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
+from django.contrib import messages
 
 
 # Create your views here.
@@ -21,3 +22,25 @@ def SignUp(request):
     else:
         form = SignUpForm()
     return render(request, 'django_registration/registration_form.html', {'form': form})
+
+def loginrequest(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("/index")
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request, "register/login.html", {"loginform": form})
+
+@login_required(login_url='/accounts/login')
+def index(request):
+    pass
