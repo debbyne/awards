@@ -1,4 +1,4 @@
-from turtle import title
+
 from django.db import models
 from email.mime import image
 from django.contrib.auth.models import User

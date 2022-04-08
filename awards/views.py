@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, CommentsForm
+from .forms import SignUpForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
@@ -48,3 +48,7 @@ def index(request):
     current_user = request.user
     projects = Project.get_all_projects()
     return render(request, 'index.html',{'title':title,'current_user':current_user,'projects':projects})
+
+def logoutUser(request):
+ logout(request)
+ return redirect(index)
