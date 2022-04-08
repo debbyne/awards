@@ -49,6 +49,13 @@ def index(request):
     projects = Project.get_all_projects()
     return render(request, 'index.html',{'title':title,'current_user':current_user,'projects':projects})
 
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    projects = Project.objects.filter(user_id= current_user.id).all()
+
+    return render(request,'profile.html',{'current_user':current_user,'projects':projects})
+
 def logoutUser(request):
  logout(request)
  return redirect(index)
