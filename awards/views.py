@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm
+from .forms import SignUpForm, UpdateUserProfileForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
@@ -54,7 +54,18 @@ def profile(request):
     current_user = request.user
     projects = Project.objects.filter(user_id= current_user.id).all()
 
-    return render(request,'profile.html',{'current_user':current_user,'projects':projects})
+    profileForm = UpdateUserProfileForm()
+    if request.method == 'POST':
+        profileForm = UpdateUserProfileForm(request.POST, request.FILES)
+        if profileForm.is_valid():
+            profile=profileForm.save(commit=FALSE)
+            profile.save()
+        else:
+           
+            profileForm = UpdateUserProfileForm()
+
+
+    return render(request,'profile.html',{'current_user':current_user,'projects':projects,'profileForm':profileForm})
 
 def logoutUser(request):
  logout(request)

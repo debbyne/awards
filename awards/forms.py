@@ -21,3 +21,14 @@ class SignUpForm(forms.ModelForm):
             'password1', 
             'password2', 
         ]
+
+class UpdateUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username', 
+            'first_name', 
+            'last_name', 
+            'email',
+            'password', 
+        ]
