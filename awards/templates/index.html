@@ -17,16 +17,16 @@
         
           <div class="navbar-header">
              <h1>
-              <a class="navbar-brand" href="{% url 'insta:index' %}"> INSTAGRAM</a>
+              <a class="navbar-brand" href="{% url 'awards:index' %}"> AWWARDS</a>
             </div>
              </h1>
         <div class="list">
 
-          <form class="navbar-form" role="search" action="{% url 'insta:search_results' %}">
+          <form class="navbar-form" role="search" action="{% url 'awards:search_results' %}">
             <div class="input-group">
               <div class="search">
               
-              <a href="{% url 'insta:index' %}">
+              <a href="{% url 'awards:index' %}">
                 
                 <input id="search_input" type="text"  placeholder="Search..." >
                 <i class="fa fa-search" style="font-size:12px"></i>
@@ -39,7 +39,7 @@
           </form>
          
               <div class="home-icon">
-                <a href="{% url 'insta:index' %}">
+                <a href="{% url 'awards:index' %}">
                   <h1> </h1>
                   <i class="fa fa-home" style="font-size:22px"></i>
                 </a>
@@ -49,7 +49,7 @@
               
 
               <div class="plus-icon">
-                <a href="{% url 'insta:newPostForm' %}">
+                <a href="{% url 'awards:newPostForm' %}">
                   <i class="fa fa-plus-square" style="font-size:22px"></i>
                 </a>
                 
@@ -69,7 +69,7 @@
                     <img src="{{user.profile.profile_photo.url }}" alt="image">
                   </li>
                   <li>
-                    <a class="drop" href="{%url 'insta:profile'%}">Profile</a>
+                    <a class="drop" href="{%url 'awards:profile'%}">Profile</a>
                   </li>
                  
                   <li>
