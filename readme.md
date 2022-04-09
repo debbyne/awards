@@ -21,7 +21,6 @@ pip\
 DJANGO\
 django-bootstrap
 
-
 # Setup
 In Terminal:
 git clone  https://github.com/debbyne/awards.git
