@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import messages
 from .models import Profile,Project,Review
+from pickle import FALSE
 
 
 # Create your views here.
@@ -61,7 +62,7 @@ def profile(request):
             profile=profileForm.save(commit=FALSE)
             profile.save()
         else:
-           
+        
             profileForm = UpdateUserProfileForm()
 
 
