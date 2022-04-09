@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block styles %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+   
+{% endblock%}
+{% block content %}
+
+<div class="container">
+    <div class="navbar  fixed-top" role="navigation">
+      <div class="container-fluid">
+          <div class="navbar-header">
+             <h1>
+              <a class="navbar-brand" href="/"> INSTAGRAM</a>
+            </div>
+             </h1>
+             
+          
+        <div class="list">
+
+          <form class="navbar-form" role="search" action="">
+            <div class="input-group">
+              <div class="search">
+              
+              <a href="/">
+                
+                <input id="search_input" type="text"  placeholder="Search..." >
+                <i class="fa fa-search" style="font-size:15px"></i>
+                <label  value="submit" for="search-input"><span class="glyphicon glyphicon-search search-icon"></span></label>
+            
+              </a>
+            </div>
+                </div>
+            </div>
+          </form>
+         
+              <div class="home-icon">
+                <a href="/">
+                  <h1> </h1>
+                  <i class="fa fa-home" style="font-size:18px"></i>
+                </a>
+              
+              </div>
+               
+              
+
+              <div class="plus-icon">
+                <i class="fa fa-plus-square" style="font-size:18px"></i>
+               </div>
+              <div class="love-icon">
+                <i class="fa fa-heart" style="font-size:18px"></i>
+              </div>
+            
+            
+          </div>    
+    </div>
+    </div>
+
+    <div class="media">
+        
+        <div class="media-body">
+
+            
+          <h4 class="mt-0">{{user.username}}</h4> <br>
+          <div class="details">
+            <span class="mr-5">{{images.count}} Posts</span>
+            <span class="mr-5"> {{ user.profile.followers.count }}followers</span>
+            <span class="mr-5"> {{ user.profile.following.count }} following</span>
+          </div>
+          <div class="bio-details">
+              <p>{{ user.profile.bio}}</p>
+
+              <button class="btn btn-sm btn-secondary"   data-bs-toggle="modal" data-bs-target="#myModal">Update Profile</button>
+          </div>
+
+          <div class="prof">
+    
+                <a href="/accounts/logout">Logout</a>
+          </div>
+
+          <div class="card-columns">
+            {% for post in profileposts %}
+                <div class="card " id="post">
+                    <div class="card-body">
+                        <img src="{{post.image.url}}" alt="image" class="card-img"  height="100%">
+                        <p class="text-muted"> 
+                            <i class="fa fa-heart" style="font-size:18px"></i>
+                                <span >{{image.likes.count}}</span>
+                                <i class="fa fa-comment" style="font-size:18px"></i> <span style="color: white">{{image.comments.count}}</span></p>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+      </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Profile Details </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+{% if profileForm.errors  %}
+Password/Username Incorrect
+       {% endif %}
+      </div>
+
+     
+      <form action="{% url 'insta:profile' %}"  method="post">
+          {% csrf_token %}
+        {% bootstrap_form  profileForm %}
+        <div class="form-group">
+
+          <input value="Update"  type="submit" class="btn btn-success" >
+        </div>
+        <input type="hidden" name="next" value="{{next}}">
+
+      </form>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+    .media{
+        padding-left: 250px;
+        font-family: 'Roboto', sans-serif;
+        margin-top: 6%;
+        font-size: 23px;
+    }
+    .navbar-header{
+    font-family: 'Lobster', cursive;
+    padding-left: 110px;
+    font-weight: 100;
+    
+      
+    }
+    .navbar-header a{
+      font-size: 25px;
+    }
+    #search_input{
+      width: 48%;
+      height: 64%;
+      font-size: 10px;
+      border-radius: 3px;
+      border: 1.1px solid rgb(226, 223, 223);
+      margin-left: 90px;
+    }
+    
+    .list{
+      display: flex;
+      justify-content: space-evenly;
+      padding-top: 9px;
+    }
+    .love-icon{
+      padding-top: 10px;
+      padding-right: 5px;
+    
+    }
+    .home-icon{
+      padding-right: 5px;
+    }
+    .plus-icon{
+      padding-top: 10px;
+      padding-right: 5px;
+    }
+    .container-fluid{
+        font-size: 18px;
+      margin-left: 40px;
+      margin-right: 250px;
+      display: flex;
+      justify-content: space-evenly;
+      color: rgb(0, 0, 0);
+      border: none;
+      background-color: white;
+    }
+    
+    .container-fluid a{
+      color: rgb(0, 0, 0);
+    }
+    #greyi{
+      color: rgb(199, 198, 198);
+      
+    }
+    .media-body{
+      padding-left: 21%;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
