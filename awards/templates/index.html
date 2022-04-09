@@ -22,7 +22,7 @@
              </h1>
         <div class="list">
 
-          <form class="navbar-form" role="search" action="{% url 'awards:search_results' %}">
+     <form class="navbar-form" role="search" action="{% url 'awards:search_results' %}">
             <div class="input-group">
               <div class="search">
               
@@ -36,28 +36,17 @@
             </div>
                 </div>
             </div>
-          </form>
+     </form>
          
-              <div class="home-icon">
+          <div class="home-icon">
                 <a href="{% url 'awards:index' %}">
                   <h1> </h1>
                   <i class="fa fa-home" style="font-size:22px"></i>
                 </a>
               
               </div>
-               
-              
+         </div>
 
-              <div class="plus-icon">
-                <a href="{% url 'awards:newPostForm' %}">
-                  <i class="fa fa-plus-square" style="font-size:22px"></i>
-                </a>
-                
-               </div>
-              <div class="love-icon">
-                <i class="fa fa-heart" style="font-size:22px"></i>
-              </div>
-            
             <ul>
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -66,7 +55,7 @@
                       </a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <img src="{{user.profile.profile_photo.url }}" alt="image">
+                    <img src="" alt="image">
                   </li>
                   <li>
                     <a class="drop" href="{%url 'awards:profile'%}">Profile</a>
@@ -80,6 +69,123 @@
             </div>
           </div>    
     </div>
+    
+    <div class="container-fluid">
+        <div class="container-xl">
+            <div class="row">
+               
+                <div class="card" style="width: 27rem;height: 25rem;">
+                    <div class="post">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"></h5>
+                      <img src="/media/images/Screenshot from 2022-04-09 16-09-05.png" alt="image">
+
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 27rem;height: 25rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+
+              
+                    <img src="/media/images/Screenshot from 2022-04-09 16-09-13.png" alt="image">
+                    <img src="/media/images/Screenshot from 2022-04-09 16-10-34.png" alt="image">
+                    <img src="/media/images/Screenshot from 2022-04-09 16-11-15.png" alt="image">
+                    <img src="/media/images/Screenshot from 2022-04-09 16-15-22.png" alt="image">
+                    <img src="/media/images/Screenshot from 2022-04-09 16-17-16.png" alt="image">
+                    <img src="/media/images/Screenshot from 2022-04-09 16-17-54.png" alt="image">
+                    <img src="/media/images/Screenshot from 2022-04-09 16-19-10.png" alt="image">
+                
+            </div>
+        </div>
     </div>
 
+    <style>
+        *{
+            background-color: black;
+            padding: 0px;
+            margin: 0px;
+        }
+        /* .container{
+            background-image: url(/media/images/award4.jpeg);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        } */
+        .navbar-header a{
+        color: white;
+        }
+        .navbar{
+            display: flex;
+        }
+        .card{
+            background-color: white;
+            margin: 15px;
+            border: none;
+            padding: 0px;
+            
+            border: 1px solid white;
+        }
+        .row{
+            padding-top: 60px;
+            
+        }
+        .post{
+        background-color: white;
+        }
+    </style>
 {% endblock %}
