@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'awards',
     'bootstrap3',
     'cloudinary',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
