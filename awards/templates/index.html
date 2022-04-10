@@ -74,17 +74,16 @@
         <div class="container-xl">
             <div class="row">
             {% for image in images %}
-                <div class="card" style="width: 27rem;height: 25rem;">
-                    <div class="post">
-                    <div class="card-body">
-                      <img id="image" class="card-img" src="{{image.image.url}}" alt="image" width="">
-                      <h5 class="card-title">Card title</h5>
+                <div class="card" style="width: 26rem;height: 0px;">
+                  <div class="post">
+                    <div class="card-img">
+                      <img id="image" class="card-img" src="{{image.image.url}}" alt="image" width="80%" height="100%">
+                      <h5 class="card-title">{{image.title}}</h5>
                     </div>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                   </div>
                 {% endfor %} 
-        </div>
+          </div>
     </div>
 
     <style>
@@ -106,19 +105,23 @@
             display: flex;
         }
         .card{
-            background-color: white;
+            
             margin: 15px;
             border: none;
-            padding: 0px;
-            
-            border: 1px solid white;
+            padding-bottom: 0px;
+      
         }
+
         .row{
-            padding-top: 60px;
-            
+        padding-top: 60px;
+          
         }
         .post{
         background-color: white;
         }
     </style>
+{% endblock %}
+{% block scripts %} 
+{{block.super}}
+  <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
 {% endblock %}

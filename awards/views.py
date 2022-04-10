@@ -47,8 +47,10 @@ def loginrequest(request):
 def index(request):
     title = "Awwards"
     current_user = request.user
-    projects = Project.get_all_projects()
-    return render(request, 'index.html',{'title':title,'current_user':current_user,'projects':projects})
+    images = Project.objects.all()
+
+    # projects = Project.get_all_projects()
+    return render(request, 'index.html',{'title':title,'current_user':current_user,'images':images})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
