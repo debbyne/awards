@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from .models import Project,Profile
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -31,4 +32,11 @@ class UpdateUserProfileForm(forms.ModelForm):
             'last_name', 
             'email',
             'password', 
+        ]
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = [
+            'image',
+            'caption'
         ]
