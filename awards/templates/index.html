@@ -11,7 +11,8 @@
 {% endblock%}
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
+  <div class="enclose">
     <div class="navbar  sticky-top" role="navigation">
       <div class="container-fluid upper">
         
@@ -46,13 +47,13 @@
               
               </div>
          </div>
-
-            <ul>
+              
               <div class="dropdown">
+                <div class="dropd">
                 <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">
                   <i id="greyi" class="fa fa-user" style="font-size:22px"></i>
                           <span class="caret"></span>
-                      </a>
+                </a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <img src="" alt="image">
@@ -67,26 +68,31 @@
                 </ul>
               </li>
             </div>
+          </div> 
             <div class="input-group">
-              <a href=""></a>
-              <input class="btn btn-secondary" id="add_input" type="text"  placeholder="Add Project" >
+              <a href="{% url 'awards:newProjectForm' %}">
+                              <input class="btn btn-secondary" id="add_input" type="text"  placeholder="Add Project" >
+              </a>
 
             </div>
-          </div>    
+             
     </div>
-    
+  </div>
+</div>
     <div class="container-fluid">
         <div class="container-xl">
             <div class="row">
             {% for image in images %}
-                <div class="card" style="width: 26rem;height: 0px;">
+            <div class="col-md-4">
+                <div class="card" style="width: 23rem;height: 0px;">
                   <div class="post">
                     <div class="card-img">
-                      <img id="image" class="card-img" src="{{image.image.url}}" alt="image" width="80%" height="100%">
+                      <img id="image" class="card-img" src="{{image.image.url}}" alt="image" width="70%" height="100%">
                       <h5 class="card-title">{{image.title}}</h5>
                     </div>
                     </div>
                   </div>
+            </div>
                 {% endfor %} 
           </div>
     </div>
@@ -104,11 +110,19 @@
             background-position: center;
             background-repeat: no-repeat;
         } */
+       
         .navbar-header a{
         color: white;
         }
-        .navbar{
+        .enclose{
+        
             display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .upper{
+          width: 660px;
+          height: 40px;
         }
         .card{
             margin: 15px;
@@ -126,11 +140,20 @@
 
       #search_input{
         background-color: rgb(195, 193, 193);
+
+        
       }
       #add_input{
         background-color: rgb(195, 193, 193);
         width: 110px;
         height: 60px;
+        margin-left: 1450px;
+        margin-top: 0px;
+       
+      }
+      .dropd{
+        padding-left: 300px;
+        padding-top: 17px;
       }
     </style>
 {% endblock %}

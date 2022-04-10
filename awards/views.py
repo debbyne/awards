@@ -46,11 +46,9 @@ def loginrequest(request):
 @login_required(login_url='/accounts/login')
 def index(request):
     title = "Awwards"
-    current_user = request.user
+    current_user = User.objects.exclude(id=request.user.id)
     images = Project.objects.all()
-
-    # projects = Project.get_all_projects()
-    return render(request, 'index.html',{'title':title,'current_user':current_user,'images':images})
+    return render(request, 'index.html',{'title':title,'user':current_user,'images':images})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -102,4 +100,4 @@ def newProjectForm(request):
 
     else:
         form = ProjectForm()
-    return render(request, 'newpost.html', {"form": form})
+    return render(request, 'newproject.html', {"form": form})
