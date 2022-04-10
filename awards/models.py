@@ -33,7 +33,6 @@ class Profile(models.Model):
      def delete_profile(self):
         self.delete()
 
-    
      def __str__(self):
         return self.user.username
 
