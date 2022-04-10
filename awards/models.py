@@ -50,7 +50,8 @@ class Project(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts', null=True)
     title=models.CharField(max_length=30, blank=True)
     time_posted=models.DateTimeField(auto_now_add=True, null=True)
-    
+    description = models.TextField(max_length=1000, null=True)
+    url = models.URLField(max_length=100, null=True)
     class Meta:
         ordering = ["-pk"]
 
