@@ -8,6 +8,9 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import messages
 from .models import Profile,Project,Review
 from pickle import FALSE
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,ProjectsSerializer
 
 
 # Create your views here.
@@ -101,3 +104,16 @@ def newProjectForm(request):
     else:
         form = ProjectForm()
     return render(request, 'newproject.html', {"form": form})
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many=True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectsSerializer(all_projects, many=True)
+        return Response(serializers.data)
+
