@@ -8,44 +8,8 @@
    
 {% endblock%}
 {% block content %}       
-        <div class="btn">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <h3>Photo Details</h3>
-            </button>
-        </div>
-<!-- The Modal -->
+       
 
-<div class="modal" id="exampleModal">
-<div class="modal-dialog">
-<div class="modal-content">
-
-  <!-- Modal Header -->
-  <div class="modal-header">
-    <h4 class="modal-title">{{image.}}</h4>
-    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-    
-  </div>
-
-  <!-- Modal body -->
-  <div class="modal-body">
-
-              <img style="width: 50%; height: 210px;" src="{{images.image.url}}" alt="image">
-              <div class="details">
-              <p class="text-center"> {{image.description}}</p>
-                <a href="">View Project</a>
-            </div>
-  </div>
-
-  <!-- Modal footer -->
-  <div class="modal-footer">
-          <input class="form-control input-lg" type="text"  value="{{images.image.url}}" id="{{images.id}}.url">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success " onclick="copyLink('{{images.id}}.url')">copy</button>
-  </div>
-
-</div>
-</div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 {%  endblock %}

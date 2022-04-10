@@ -84,18 +84,59 @@
             <div class="row">
             {% for image in images %}
             <div class="col-md-4">
-                <div class="card" style="width: 23rem;height: 0px;">
-                  <div class="post">
-                    <div class="card-img">
-                      <img id="image" class="card-img" src="{{image.image.url}}" alt="image" width="70%" height="100%">
-                      <h5 class="card-title">{{image.title}}</h5>
+            <div class="inside">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal">
+              
+                  <div class="card" style="width: 23rem;height: 0px;">
+                    <div class="post">
+                      <div class="card-img">
+                        <img id="image" class="card-img" src="{{image.image.url}}" alt="image" width="70%" height="100%">
+                        <h5 class="card-title">{{image.title}}</h5>
+                      </div>
+                      </div>
                     </div>
-                    </div>
-                  </div>
+              
+              </button>
             </div>
+          </div> 
+           
                 {% endfor %} 
           </div>
     </div>
+
+<!-- The Modal -->
+
+<div class="modal" id="exampleModal">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h4 class="modal-title">{{image.}}</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      
+    </div>
+  
+    <!-- Modal body -->
+    <div class="modal-body">
+  
+                <img style="width: 50%; height: 210px;" src="{{images.image.url}}" alt="image">
+                <div class="details">
+                <p class="text-center"> {{image.description}}</p>
+                  <a href="">{{image.url}}</a>
+              </div>
+    </div>
+  
+    <!-- Modal footer -->
+    <div class="modal-footer">
+            <input class="form-control input-lg" type="text"  value="{{images.image.url}}" id="{{images.id}}.url">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success " onclick="copyLink('{{images.id}}.url')">copy</button>
+    </div>
+  
+  </div>
+  </div>
+  </div>
 
     <style>
         *{
@@ -125,9 +166,13 @@
           height: 40px;
         }
         .card{
-            margin: 15px;
+            margin: 0px;
             border: none;
-            padding-bottom: 0px;
+            padding-bottom: 310px;
+            transition: all .3s;
+        }
+        .card:hover{
+          transform: scale(1.08);
         }
 
         .row{
@@ -154,6 +199,13 @@
       .dropd{
         padding-left: 300px;
         padding-top: 17px;
+      }
+      .row btn{
+        border: none;
+        padding: 0px;
+        margin: 0px;
+        background-color: black;
+        color: black;
       }
     </style>
 {% endblock %}
