@@ -13,8 +13,8 @@ urlpatterns=[
     path('logout/', views.logoutUser, name='logout'),
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path(r'^api/merch/$', views.ProfileList.as_view()),
-    path(r'^api/merch/$', views.ProjectList.as_view()),
+    path(r'^api/profile/$', views.ProfileList.as_view()),
+    path(r'^api/profile/$', views.ProjectList.as_view()),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
