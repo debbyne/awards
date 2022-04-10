@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserProfileForm
+from .forms import SignUpForm, UpdateUserProfileForm, ProjectForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
@@ -87,3 +87,19 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+@login_required(login_url='login')
+def newProjectForm(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            user = current_user
+            image.save()
+            
+            return redirect('/')
+
+    else:
+        form = ProjectForm()
+    return render(request, 'newpost.html', {"form": form})
