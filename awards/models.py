@@ -13,7 +13,7 @@ import datetime as dt
 class Profile(models.Model):
      name=models.CharField(max_length=50, blank=True)
      bio=models.TextField(max_length=400, default="My Bio")
-     profile_photo=models.ImageField(upload_to = 'photos/',default="",null=True)
+     profile_photo=CloudinaryField('image',null = True)
      user=models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
      def __str__(self):
         return f'{self.user.username} Profile'
@@ -106,7 +106,6 @@ class Review(models.Model):
     overall_score = models.IntegerField(blank=True,default=0)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-   
 
     def __str__(self):
         return f'{self.project.title} ratings'
