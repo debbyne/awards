@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserProfileForm, ProjectForm
+from .forms import SignUpForm, UpdateUserProfileForm, ProjectForm,ReviewForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
@@ -117,3 +117,19 @@ class ProjectList(APIView):
         serializers = ProjectsSerializer(all_projects, many=True)
         return Response(serializers.data)
 
+@login_required(login_url='/accounts/login/')
+def review(request,project_id):
+    current_user = request.user
+    project = Project.objects.filter(id=project_id).first()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.project = project
+            review.user = current_user
+            review.save()
+            return redirect('/')
+    else:
+        rate_form = ReviewForm()
+
+    return render(request, 'index.html',{'current_user':current_user,'form':form,'project':project})

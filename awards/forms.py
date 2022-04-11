@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Project,Profile
+from .models import Project,Profile, Review
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -39,4 +39,13 @@ class ProjectForm(forms.ModelForm):
         fields = [
             'image',
             'title'
+        ]
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        exclude = [
+        'overallScore',
+        'project',
+        'user'
         ]
