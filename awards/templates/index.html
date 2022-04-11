@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block styles %}
 {% load static %}
+{{form.media}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -123,9 +124,21 @@
       <img id="image" class="modal-img" src="{{image.image.url}}" alt="image" width="70%" height="100%">
       <div class="details">
                 <p class="text-center"> {{image.description}}</p>
-                  <a href="">{{image.url}}</a>
+                  <a href="">{{image.url}}</a> <br>
                   just f in display
               </div>
+
+            <div class="rating">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {% bootstrap_form rate_form %}
+              <button class="btn-secondary">
+                RATE THE PROJECT
+              </button>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
     </div>
   
     <!-- Modal footer -->
