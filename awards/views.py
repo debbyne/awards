@@ -146,7 +146,8 @@ def review(request, id):
             review.average = (
                 review.design + review.usability + review.content)/3
             review.save()
-            return HttpResponseRedirect(reverse('review', args=(project.id,)))
+            return redirect('/')
+            # return HttpResponseRedirect(reverse('review', args=(project.id,)))
     else:
         form = RatingForm()
     params = {
