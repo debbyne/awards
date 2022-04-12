@@ -4,8 +4,7 @@
 Debbyne Kinya
 
 # Preview of the page
-![Landing page photo](https://github.com/debbyne/insta-clone/blob/master/media/images/Screenshot%20from%202022-04-06%2001-46-10.png)
-
+![Landing page photo](https://github.com/debbyne/awards/blob/master/media/images/Screenshot%20from%202022-04-12%2014-19-45.png)
 # Description
 The user can be able to :\
 1.View posted projects and their details\
