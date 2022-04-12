@@ -15,6 +15,7 @@ urlpatterns=[
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/profile/', views.ProfileList.as_view()),
     path('api/project/', views.ProjectList.as_view()),
+    path('review/(?P<id>\d+)', views.review, name='review'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

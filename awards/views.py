@@ -1,16 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserProfileForm, ProjectForm,ReviewForm
+from .forms import SignUpForm, UpdateUserProfileForm, ProjectForm,RatingForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import messages
-from .models import Profile,Project,Review
+from .models import Profile,Project,Rates
 from pickle import FALSE
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectsSerializer
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -117,19 +119,41 @@ class ProjectList(APIView):
         serializers = ProjectsSerializer(all_projects, many=True)
         return Response(serializers.data)
 
-@login_required(login_url='/accounts/login/')
-def review(request,project_id):
+
+@login_required(login_url='/accounts/login')
+def review(request, id):
+    project = Project.objects.get(id=id)
+    rate = Rates.objects.filter(user=request.user, project=project).first()
+    ratings = Rates.objects.all()
+    rating_status = None
+    if rate is None:
+        rating_status = False
+    else:
+        rating_status = True
     current_user = request.user
-    project = Project.objects.filter(id=project_id).first()
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
+        form = RatingForm(request.POST)
         if form.is_valid():
-            review = form.save(commit=False)
+            design = form.cleaned_data['design']
+            usability = form.cleaned_data['usability']
+            content = form.cleaned_data['content']
+            review = Rates()
             review.project = project
             review.user = current_user
+            review.design = design
+            review.usability = usability
+            review.content = content
+            review.average = (
+                review.design + review.usability + review.content)/3
             review.save()
-            return redirect('/')
+            return HttpResponseRedirect(reverse('review', args=(project.id,)))
     else:
-        rate_form = ReviewForm()
-
-    return render(request, 'index.html',{'current_user':current_user,'form':form,'project':project})
+        form = RatingForm()
+    params = {
+        'project': project,
+        'form': form,
+        'rating_status': rating_status,
+        'reviews': ratings,
+        'ratings': rate
+    }
+    return render(request, 'projectdets.html', params)

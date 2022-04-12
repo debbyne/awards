@@ -97,15 +97,39 @@ class Project(models.Model):
 
     def _str_(self):
         return self.title 
-class Review(models.Model):
-    
-    review = (1, 1),(2, 2),(3, 3),(4, 4),(5, 5),(6, 6),(7, 7),(8, 8),(9, 9),(10, 10)
-    design = models.IntegerField(choices=review,blank=True,default=0)
-    usability = models.IntegerField(choices=review, blank=True,default=0)
-    content = models.IntegerField(choices=review, blank=True,default=0)
-    overall_score = models.IntegerField(blank=True,default=0)
-    project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
+
+class Rates(models.Model):
+    RATE_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE,null=True)
+    design =models.IntegerField(choices=RATE_CHOICES, default=0,blank=False)
+    content =models.IntegerField(choices=RATE_CHOICES, default=0,blank=False)
+    usability =models.IntegerField(choices=RATE_CHOICES, default=0,blank=False)
+    average = models.DecimalField(default=1, blank=False, decimal_places=2, max_digits=40)
+    date = models.DateTimeField(auto_now_add =True)
     def __str__(self):
         return f'{self.project.title} ratings'
+# class Review(models.Model):
+    
+#     review = (1, 1),(2, 2),(3, 3),(4, 4),(5, 5),(6, 6),(7, 7),(8, 8),(9, 9),(10, 10)
+#     design = models.IntegerField(choices=review,blank=True,default=0)
+#     usability = models.IntegerField(choices=review, blank=True,default=0)
+#     content = models.IntegerField(choices=review, blank=True,default=0)
+#     overall_score = models.IntegerField(blank=True,default=0)
+#     project = models.ForeignKey(Project,on_delete=models.CASCADE)
+#     user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return f'{self.project.title} ratings'
