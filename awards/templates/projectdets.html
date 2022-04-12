@@ -13,14 +13,14 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 {% endblock%}
 
-<div class="container">
+<div class="container-xl">
   <div class="container-fluid">
     <div class="row">
      
-        <div class="col-md-1">
+        <div class="col-md-2">
         </div>
-        <div class="col-md-6">
-          {{project.title}}
+        <div class="col-md-7">
+            {{project.title}} <br>
           <img id="image" class="modal-img" src="{{project.image.url}}" alt="image" width="70%" height="100%">
           <div class="details">
                     <p class="text-center"> {{project.description}}</p>
@@ -32,7 +32,7 @@
         </div>
         <div class="rev">
         <div class="col-md-4">
-            <h2 class="mt-4">Review Rate</h2>
+            <h2 class="mt-4">Review </h2>
             {% if rating_status %}
             <h5>You have already done your review</h5>
             {% else %}
@@ -40,17 +40,17 @@
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% bootstrap_form form %}
-                <button class="btn btn-sm btn-info btn-block" style="margin-top:4px;" value="review"
+                <button class="btn  btn-secondary btn-block" style="margin-top:4px;" value="review"
                     type="submit">Rate</button>
             </form>
             {% endif %}
             {% endif %}
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
     
 
     <h2>Ratings</h2>
-            <table class="table" border="1">
+            <table class="table" >
                 <th>Username</th>
                 <th>Design Rating</th>
                 <th>Usability Rating</th>
@@ -58,11 +58,11 @@
                 <th>Overal Score</th>
                 {% for reviews in reviews %}
                 <tr>
-                    <td class="user">{{ reviews.user.username }}</td>
+                    <td class="username">{{ reviews.user.username }}</td>
                     <td class="design">{{ reviews.design }}</td>
-                    <td class="usability">{{ reviews.usability }}</td>
+                    <td class="usab">{{ reviews.usability }}</td>
                     <td class="content">{{ reviews.content }}</td>
-                    <td class="average">{{reviews.average  }}</td>
+                    <td class="ave">{{reviews.average  }}</td>
 
                 </tr>
 
@@ -73,12 +73,14 @@
           </div>
         </div>
       <style>
-        .container{
+        .container-xl{
           background-color: black;
           color: white;
+          padding: 20px;
         }
         .table{
           color: white;
+          border: 1px solid white;
         }
         .row{
           margin-bottom: 50px;

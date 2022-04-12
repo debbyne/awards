@@ -38,18 +38,17 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = [
             'image',
-            'title'
+            'title',
+            'description',
+            'url'
         ]
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rates
-        fields = ['design', 'usability', 'content']
+        fields = [
+            'design',
+             'usability', 
+             'content'
+             ]
 
-# class ReviewForm(forms.ModelForm):
-#     class Meta:
-#         model = Review
-#         exclude = [
-#         'overallScore',
-#         'project',
-#         'user'
-#         ]
+#
